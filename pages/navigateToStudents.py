@@ -8,7 +8,7 @@ class goToStudents:
 
     def go_to_student_module(self):
         # wait for the link to appear
-        self.page.wait_for_selector("a:has(span.grid-display:has-text('Students'))", timeout=10000)
+        expect(self.student_module).to_be_visible()
         self.student_module.click()
         
     def select_student(self):
@@ -18,4 +18,3 @@ class goToStudents:
             with self.page.expect_popup() as new_page_info:
                 self.view_btn.click()
             return new_page_info.value
-    

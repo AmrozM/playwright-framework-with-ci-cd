@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect
 from config.constants import DEFAULT_TIMEOUT
 from utils.logger import get_logger
-from config.config import SCHOOL_ID
 
 class LoginPage:
     def __init__(self, page: Page):
@@ -22,10 +21,5 @@ class LoginPage:
         self.school_id_input.fill(school_id)
         self.username_input.fill(username)
         self.password_input.fill(password)
-        self.log.info(f"Logging in with School ID: {SCHOOL_ID}")
+        self.log.info(f"Logging in with School ID: {school_id}")
         self.sign_in_button.click()
-
-    def go_to_student_module(self):
-        self.student_module.click()
-    # Wait karein jab tak naya page load na ho jaye
-        self.page.wait_for_load_state("networkidle")

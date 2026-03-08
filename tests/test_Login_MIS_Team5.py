@@ -11,14 +11,11 @@ def test_Login_MIS_Team5(page):
     login.open(BASE_URL)
     login.login(SCHOOL_ID, USERNAME, PASSWORD)
     navigator = goToStudents(page)
-    page.wait_for_load_state("load")
     expect(navigator.student_module).to_be_attached()
-    #page.wait_for_timeout(10000)    
     navigator.go_to_student_module()
     navigator.select_student()
     navigator.click_view_button()
     page.wait_for_timeout(10000)
-    new_tab = navigator.click_view_button()
-    #assert "https://mis-hotfix.bromcom.dev/Nucleus/UI/Areas/People/StudentList.aspx" in new_tab.url  ---> Use this if page open in new tab.
-    assert f"{BASE_URL}Nucleus/UI/Areas/People/StudentList.aspx" in page.url, "Url seems to be different"
+    new_tab = navigator.click_view_button() #use this when checking on new_tab
+    assert f"{BASE_URL}Nucleus/UI/Areas/People/StudentList.aspx" in page.url, "Url seems to be different" # use following if page opens in new tab assert "url" in new_tab.url
     log.info("MIS Login test completed successfully")
