@@ -14,6 +14,7 @@ class LoginPage:
         # button locator specific to the OrangeHRM demo login
         self.sign_in_button = self.page.locator('button[type="submit"]')
         self.dashboard_button = self.page.locator('a:has-text("Dashboard")')
+        self.error_message = self.page.locator('.oxd-alert-content-text')
 
     def open(self, url: str):
         # iF you use context base_url, you can call self.page.goto("/") too.

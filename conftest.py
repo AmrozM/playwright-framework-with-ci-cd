@@ -20,7 +20,7 @@ def browser_settings():
         "base_url": os.getenv("BASE_URL", BASE_URL),
         "viewport": {"width": 1366, "height": 768},
         "video": _to_bool(os.getenv("VIDEO"), False),
-    }
+          }
 
 @pytest.fixture(scope="session")
 def browser(playwright_instance: Playwright, browser_settings):

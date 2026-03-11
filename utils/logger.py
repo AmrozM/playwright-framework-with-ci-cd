@@ -11,5 +11,4 @@ def get_logger(name ="framework"):
         console.setFormatter(logging.Formatter("%(asctime)s | %(levelname)s | %(message)s"))
 
         logger.addHandler(console)
-
-        return logger
+    return logger
