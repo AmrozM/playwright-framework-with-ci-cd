@@ -4,6 +4,7 @@ import os
 import pytest
 from playwright.sync_api import sync_playwright, Playwright, Browser, BrowserContext, Page
 from config.constants import BASE_URL, DEFAULT_TIMEOUT
+from utils.helpers import take_screenshot
 
 def _to_bool(val: str | None, default=False) -> bool:
     if val is None:
@@ -51,3 +52,13 @@ def page(context: BrowserContext) -> Page:
 def playwright_instance() -> Playwright:
     with sync_playwright() as p:
      yield p
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    if report.when == "call" and report.failed:
+        Page = item.funcargs["page"] 
+        take_screenshot(Page, item.name)
+
+
