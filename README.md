@@ -1,16 +1,11 @@
-1. Project Overview
-2. Tech Stack
-3. Framework Structure
-4. How to Run Tests
-5. Environment Variables
-
 # SDET FRAMEWORK
 
 ## Project Overview
 This project automates UI and API testing. UI tests cover OrangeHRM 
 login and Bromcom MIS login with navigation to Student profile across 
-multiple environments (Team5, Release, Hotfix). API tests cover 
-JSONPlaceholder API validation. Custom Playwright fixtures are used 
+multiple environments (Team5, Release, Hotfix). Also with the help of ENV variables test can now run on both Products 
+i.e MIS and Vision just by using a single env variable ex: Team5
+API tests cover JSONPlaceholder API validation. Custom Playwright fixtures are used 
 instead of pytest-playwright plugin. Logger is implemented for 
 test execution visibility.
 
@@ -26,6 +21,7 @@ sdet_framework/
 ├── config/         → Environment config (URLs, credentials)
 ├── pages/          → Page Object Model classes
 ├── tests/          → Test files
+├── test_data/      → json files having test data
 ├── utils/          → Logger and helpers
 ├── conftest.py     → Custom Playwright fixtures
 ├── pytest.ini      → Pytest configuration
@@ -34,14 +30,19 @@ sdet_framework/
 
 ## How to Run Tests
 
+Run specific test for MIS:
+```bash
+pytest tests/test_Login_MIS_Team5.py -v
+```
+
 Run specific test:
 ```bash
-pytest tests/test_orangehrm_login.py -v
+pytest tests/test_login_vision.py -v
 ```
 
 Run with logs:
 ```bash
-pytest tests/test_orangehrm_login.py -v -s
+pytest tests/test_login_vision.py -v -s
 ```
 
 Run all tests:

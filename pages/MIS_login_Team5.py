@@ -23,3 +23,5 @@ class LoginPage:
         self.password_input.fill(password)
         self.log.info(f"Logging in with School ID: {school_id}")
         self.sign_in_button.click()
+
+    
