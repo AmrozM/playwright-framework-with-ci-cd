@@ -4,8 +4,8 @@ import os
 import pytest
 from playwright.sync_api import sync_playwright, Playwright, Browser, BrowserContext, Page
 from config.constants import DEFAULT_TIMEOUT
-from config.config import ORANGE_URL
 from utils.helpers import take_screenshot
+from config.config import MIS_URL
 
 def _to_bool(val: str | None, default=False) -> bool:
     if val is None:
@@ -19,7 +19,7 @@ def browser_settings():
         "headless": _to_bool(os.getenv("HEADLESS"), True),
         "headed": _to_bool(os.getenv("HEADED"),False),
         "slowmo": int(os.getenv("SLOWMO", "0")), 
-        "base_url": os.getenv("BASE_URL", ORANGE_URL),
+        "base_url": os.getenv("BASE_URL", MIS_URL),
         "viewport": {"width": 1366, "height": 768},
         "video": _to_bool(os.getenv("VIDEO"), False),
           }

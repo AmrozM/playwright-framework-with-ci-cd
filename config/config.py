@@ -3,17 +3,10 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-ENV = os.getenv("ENV", "QA")
+ENV = os.getenv("ENV")
 
 ENV_CONFIG = {
-    "QA": { 
-        "BASE_URL" :  "https://opensource-demo.orangehrmlive.com",
-        "SCHOOL_ID" : None,
-        "USERNAME" : "Admin",
-        "PASSWORD" :"admin123",
-        },   
-
-      "Team5": {
+         "Team5": {
           "MIS":{
             "MIS_URL": os.getenv("MIS_TEAM5_URL"),
             "SCHOOL_ID": os.getenv("MIS_TEAM5_SCHOOL_ID"),
@@ -58,7 +51,6 @@ ENV_CONFIG = {
 
 # Final selected environment configuration
 CONFIG = ENV_CONFIG[ENV]
-ORANGE_URL = CONFIG.get("BASE_URL")
 
 MIS_URL = CONFIG.get("MIS", {}).get("MIS_URL")
 SCHOOL_ID = CONFIG.get("MIS", {}).get("SCHOOL_ID")
