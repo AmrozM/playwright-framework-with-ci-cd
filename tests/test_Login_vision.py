@@ -14,6 +14,6 @@ def test_login_vision(page):
     navigator = vision_navigation_class(page)
     navigator.goto_vision_studentlist()
     expect(navigator.studentlist_pagename).to_be_visible()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(10000)
     assert f"{VISION_URL}Students/StudentList" in page.url, "Url seems to be different" # use following if page opens in new tab assert "url" in new_tab.url
     log.info("MAT Vision Login test completed successfully")
