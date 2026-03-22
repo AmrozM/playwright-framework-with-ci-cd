@@ -9,7 +9,8 @@ class vision_navigation_class:
         self.studentlist_aggrid_checkbox = self.page.locator('.ag-row').nth(1)
 
     def goto_vision_studentlist(self):
-        expect(self.vision_list).to_be_attached()
+        expect(self.vision_list).to_be_visible(timeout=15000)
+        self.log.info(f"Current URL after vision login: {self.page.url}")
         self.vision_list.click()
         expect(self.vision_student_list).to_be_visible(timeout=10000)
         self.vision_student_list.click()
