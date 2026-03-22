@@ -4,4 +4,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN playwright install --with-deps
 COPY . .
-CMD ["pytest", "-v"]
+CMD ["pytest", "-v", "--html=reports/report.html", "--self-contained-html"]
