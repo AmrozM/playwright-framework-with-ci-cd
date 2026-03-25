@@ -1,70 +1,116 @@
-# SDET Framework
+# Scalable Test Automation Framework using Playwright (Python), Pytest, CI, Docker & AWS
 
-![Playwright Tests](https://github.com/AmrozM/SDET_Folder_Structure/actions/workflows/playwright_tests.yml/badge.svg)
+![Playwright
+Tests](https://github.com/AmrozM/SDET_Folder_Structure/actions/workflows/playwright_tests.yml/badge.svg)
 
 ## Project Overview
-This project automates UI and API testing. UI tests cover Bromcom MIS login with navigation to Student profile and MAT Vision login across multiple environments (Team5, Release, Hotfix). With the help of ENV variables tests can run on both products i.e MIS and Vision just by using a single env variable e.g: Team5. API tests cover JSONPlaceholder API validation. Custom Playwright fixtures are used instead of pytest-playwright plugin. Logger is implemented for test execution visibility. CI is implemented so that every time code is pushed to GitHub the pipeline runs and all test cases are executed. GitHub secrets are used to securely store credentials.
+
+This project is a production-ready scalable test automation framework
+built using Playwright (Python) and Pytest. It supports UI and API
+testing, integrates with CI pipelines, runs in Docker containers, and
+supports cloud execution using AWS.
+
+## Key Features
+
+-   UI automation for Bromcom MIS and MAT Vision
+-   API testing using Requests
+-   Environment-based execution (Team5, Release, Hotfix)
+-   Page Object Model (POM) design pattern
+-   Custom Playwright fixtures (no pytest-playwright dependency)
+-   Data-driven testing using JSON
+-   Centralized logging system
+-   CI integration using GitHub Actions
+-   Dockerized test execution
+-   AWS-based test execution (EC2)
+-   Secure credential handling using GitHub Secrets
 
 ## Tech Stack
-- Python
-- Playwright (sync_api)
-- Pytest
-- Requests (API testing)
 
-## Framework Structure
-```
-sdet_framework/
-├── config/         → Environment config (URLs, credentials)
-├── pages/          → Page Object Model classes
-├── tests/          → Test files
-├── test_data/      → JSON files having test data
-├── utils/          → Logger and helpers
-├── conftest.py     → Custom Playwright fixtures
-├── pytest.ini      → Pytest configuration
-└── requirements.txt
-```
+-   Python
+-   Playwright
+-   Pytest
+-   Requests
+-   GitHub Actions (CI)
+-   Docker
+-   AWS (EC2)
+-   JSON
+
+## Framework Architecture
+
+-   Page Object Model (POM) for maintainability
+-   Separation of concerns (tests, pages, data, utils)
+-   Fixtures for browser and test setup
+-   Environment-based configuration
+-   Reusable utility functions
+
+## Project Structure
+
+    sdet_framework/
+    ├── config/
+    ├── pages/
+    ├── tests/
+    ├── test_data/
+    ├── utils/
+    ├── conftest.py
+    ├── pytest.ini
+    └── requirements.txt
 
 ## How to Run Tests
 
-Run MIS test:
-```bash
-$env:ENV="Team5"
-pytest tests/test_Login_MIS_Team5.py -v
-```
+### Set Environment
 
-Run Vision test:
-```bash
-$env:ENV="Team5"
-pytest tests/test_Login_vision.py -v
-```
+    $env:ENV="Team5"
 
-Run with logs:
-```bash
-pytest tests/test_Login_MIS_Team5.py -v -s
-```
+### Run All Tests
 
-Run all tests:
-```bash
-$env:ENV="Team5"
-pytest -v
-```
+    pytest -v
 
-Run and generate HTML report:
-```bash
-pytest -v --html=report.html
-```
+### Run Specific Test
 
-## Environment Variables
+    pytest tests/test_Login_MIS_Team5.py -v
 
-Set environment (PowerShell):
-```powershell
-$env:ENV="Team5"   # MIS + Vision Team5 server
-$env:ENV="Release" # MIS + Vision Release server
-$env:ENV="Hotfix"  # MIS + Vision Hotfix server
-```
+### Run in Headed Mode
 
-Run headed (browser visible):
-```powershell
-$env:HEADED="true"
-pytest tests/test_Login_MIS_Team5.py -v
-```
+    $env:HEADED="true"
+    pytest -v
+
+### Generate Report
+
+    pytest --html=report.html
+
+## Docker Execution
+
+### Build Image
+
+    docker build -t playwright-tests .
+
+### Run Tests in Container
+
+    docker run playwright-tests
+
+## CI Integration
+
+-   GitHub Actions pipeline runs on every push
+-   Executes full test suite automatically
+-   Uses GitHub Secrets for credentials
+-   Provides execution visibility via logs and status badge
+
+## AWS Execution
+
+-   Tests executed on AWS EC2 instance
+-   Supports scalable execution
+-   Enables cloud-based testing environments
+
+## Why This Project?
+
+This project demonstrates real-world SDET capabilities:
+
+-   Scalable automation framework design
+-   CI/CD pipeline integration
+-   Containerized execution using Docker
+-   Cloud-based test execution using AWS
+-   Clean, maintainable, and reusable code structure
+
+## Author
+
+Amroz -- QA Engineer transitioning to SDET
